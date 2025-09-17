@@ -8,51 +8,51 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Professional Portfolio Theme - Blues & Teals */
-    --background: 0 0% 98%;
-    --foreground: 222 20% 11%;
+    /* Futuristic Black & Red Theme */
+    --background: 0 0% 6%;
+    --foreground: 0 0% 95%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222 20% 11%;
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 95%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222 20% 11%;
+    --popover: 0 0% 8%;
+    --popover-foreground: 0 0% 95%;
 
-    /* Professional blue as primary */
-    --primary: 210 100% 45%;
-    --primary-foreground: 0 0% 100%;
+    /* Bright red as primary */
+    --primary: 0 100% 50%;
+    --primary-foreground: 0 0% 0%;
     
-    /* Teal accent */
-    --primary-variant: 185 84% 45%;
+    /* Dark red variant */
+    --primary-variant: 0 80% 35%;
     
-    /* Soft backgrounds */
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 222 20% 11%;
+    /* Dark backgrounds */
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 95%;
 
-    --muted: 210 40% 95%;
-    --muted-foreground: 215 16% 47%;
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 65%;
 
-    --accent: 185 84% 45%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 0 100% 60%;
+    --accent-foreground: 0 0% 0%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 210 100% 45%;
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 0 100% 50%;
 
-    --radius: 0.75rem;
+    --radius: 0.5rem;
     
     /* Custom gradient variables */
     --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-variant)));
-    --gradient-hero: linear-gradient(135deg, hsl(var(--primary) / 0.05), hsl(var(--primary-variant) / 0.05));
-    --gradient-card: linear-gradient(135deg, hsl(0 0% 100%), hsl(210 40% 99%));
+    --gradient-hero: linear-gradient(135deg, hsl(0 0% 8%), hsl(0 20% 12%));
+    --gradient-card: linear-gradient(135deg, hsl(0 0% 8%), hsl(0 0% 10%));
     
-    /* Shadows with primary color */
-    --shadow-soft: 0 4px 20px -8px hsl(var(--primary) / 0.15);
-    --shadow-medium: 0 8px 30px -12px hsl(var(--primary) / 0.25);
-    --shadow-strong: 0 16px 40px -16px hsl(var(--primary) / 0.35);
+    /* Shadows with red glow */
+    --shadow-soft: 0 4px 20px -8px hsl(0 100% 50% / 0.2);
+    --shadow-medium: 0 8px 30px -12px hsl(0 100% 50% / 0.3);
+    --shadow-strong: 0 16px 40px -16px hsl(0 100% 50% / 0.4);
     
     /* Animation variables */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -76,43 +76,44 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 222 30% 7%;
-    --foreground: 210 40% 98%;
+    /* Same as light mode - already dark theme */
+    --background: 0 0% 3%;
+    --foreground: 0 0% 98%;
 
-    --card: 222 30% 9%;
-    --card-foreground: 210 40% 98%;
+    --card: 0 0% 5%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 222 30% 9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 0 0% 5%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 210 100% 55%;
-    --primary-foreground: 222 30% 7%;
+    --primary: 0 100% 55%;
+    --primary-foreground: 0 0% 0%;
     
-    --primary-variant: 185 84% 55%;
+    --primary-variant: 0 80% 40%;
 
-    --secondary: 217 33% 17%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 0 0% 8%;
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 217 33% 15%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 0 0% 6%;
+    --muted-foreground: 0 0% 70%;
 
-    --accent: 185 84% 55%;
-    --accent-foreground: 222 30% 7%;
+    --accent: 0 100% 65%;
+    --accent-foreground: 0 0% 0%;
 
-    --destructive: 0 63% 31%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 217 33% 17%;
-    --input: 217 33% 17%;
-    --ring: 210 100% 55%;
+    --border: 0 0% 12%;
+    --input: 0 0% 12%;
+    --ring: 0 100% 55%;
     
     --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-variant)));
-    --gradient-hero: linear-gradient(135deg, hsl(var(--primary) / 0.08), hsl(var(--primary-variant) / 0.08));
-    --gradient-card: linear-gradient(135deg, hsl(222 30% 9%), hsl(217 33% 11%));
+    --gradient-hero: linear-gradient(135deg, hsl(0 0% 5%), hsl(0 20% 8%));
+    --gradient-card: linear-gradient(135deg, hsl(0 0% 5%), hsl(0 0% 7%));
     
-    --shadow-soft: 0 4px 20px -8px hsl(0 0% 0% / 0.3);
-    --shadow-medium: 0 8px 30px -12px hsl(0 0% 0% / 0.4);
-    --shadow-strong: 0 16px 40px -16px hsl(0 0% 0% / 0.5);
+    --shadow-soft: 0 4px 20px -8px hsl(0 100% 50% / 0.25);
+    --shadow-medium: 0 8px 30px -12px hsl(0 100% 50% / 0.35);
+    --shadow-strong: 0 16px 40px -16px hsl(0 100% 50% / 0.45);
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -140,15 +141,38 @@ All colors MUST be HSL.
 
 @layer components {
   .gradient-text {
-    @apply bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent;
+    background-size: 200% 200%;
+    animation: gradient-shift 3s ease-in-out infinite;
   }
   
   .hero-gradient {
     background: var(--gradient-hero);
+    position: relative;
+  }
+  
+  .hero-gradient::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(circle at 20% 50%, hsl(0 100% 50% / 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, hsl(0 100% 50% / 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 40% 80%, hsl(0 100% 50% / 0.05) 0%, transparent 50%);
+    pointer-events: none;
   }
   
   .card-gradient {
     background: var(--gradient-card);
+    border: 1px solid hsl(0 0% 15%);
+  }
+  
+  .card-gradient:hover {
+    border-color: hsl(0 100% 50% / 0.3);
+    box-shadow: 0 0 20px hsl(0 100% 50% / 0.1);
   }
   
   .shadow-soft {
@@ -178,4 +202,24 @@ All colors MUST be HSL.
   .container-custom {
     @apply max-w-6xl mx-auto;
   }
+  
+  .futuristic-border {
+    position: relative;
+  }
+  
+  .futuristic-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    background: linear-gradient(45deg, transparent, hsl(0 100% 50% / 0.5), transparent);
+    border-radius: inherit;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: xor;
+  }
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
