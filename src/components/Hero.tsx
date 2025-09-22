@@ -1,50 +1,53 @@
-import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
-
 export default function Hero() {
   return (
     <section className="flex flex-col items-center justify-center text-center py-20 px-6 bg-gradient-to-b from-gray-50 to-white">
-      <motion.h1
-        className="text-4xl md:text-6xl font-extrabold tracking-tight text-gray-900 mb-4"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
+      <h1
+        className="text-4xl md:text-6xl font-extrabold tracking-tight text-gray-900 mb-4 transition-opacity duration-700 opacity-100"
       >
         Duke MEM ’27 | Aspiring Product Manager & Project Leader
-      </motion.h1>
+      </h1>
 
-      <motion.p
-        className="text-lg md:text-xl text-gray-600 max-w-2xl mb-8"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
+      <p
+        className="text-lg md:text-xl text-gray-600 max-w-2xl mb-8 transition-opacity duration-700 delay-150 opacity-100"
       >
         3x AWS Certified | Driving Cloud Transformation & AI Innovation | Published Researcher passionate about bridging technology, strategy, and product impact.
-      </motion.p>
+      </p>
 
-      <motion.div
-        className="flex flex-wrap gap-4 justify-center"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.9, delay: 0.4 }}
+      <div
+        className="flex flex-wrap gap-4 justify-center transition-opacity duration-700 delay-300 opacity-100"
       >
-        <Button asChild size="lg" className="rounded-2xl px-6 shadow-md">
-          <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
-            Download Resume
-          </a>
-        </Button>
+        <a
+          href="/resume.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bg-primary text-white rounded-2xl px-6 py-3 shadow-md hover:shadow-lg transition"
+        >
+          Download Resume
+        </a>
 
-        <Button asChild variant="outline" size="lg" className="rounded-2xl px-6">
-          <a
-            href="https://www.linkedin.com/in/abinavnarayanan"
-            target="_blank"
-            rel="noopener noreferrer"
+        <a
+          href="https://www.linkedin.com/in/abinavnarayanan"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="border border-gray-300 rounded-2xl px-6 py-3 text-gray-700 hover:bg-gray-100 transition flex items-center"
+        >
+          Connect on LinkedIn
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="ml-2 h-4 w-4"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
           >
-            Connect on LinkedIn <ArrowRight className="ml-2 h-4 w-4" />
-          </a>
-        </Button>
-      </motion.div>
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
+        </a>
+      </div>
     </section>
   );
 }
