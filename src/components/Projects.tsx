@@ -21,7 +21,7 @@ const projects = [
   },
 ];
 
-export default function Projects() {
+export const Projects = () => {
   return (
     <section className="py-16 px-6 bg-gray-50">
       <h2
@@ -47,4 +47,4 @@ export default function Projects() {
       </div>
     </section>
   );
-}
+};
