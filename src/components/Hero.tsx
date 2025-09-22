@@ -1,4 +1,4 @@
-export default function Hero() {
+export const Hero = () => {
   return (
     <section className="flex flex-col items-center justify-center text-center py-20 px-6 bg-gradient-to-b from-gray-50 to-white">
       <h1
@@ -50,4 +50,4 @@ export default function Hero() {
       </div>
     </section>
   );
-}
+};
