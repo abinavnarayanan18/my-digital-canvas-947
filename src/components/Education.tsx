@@ -28,34 +28,32 @@ const education = [
 
 export const Education = () => {
   return (
-    <section id="education" className="section-padding bg-background">
+    <section id="education" className="section-padding section-alt">
       <div className="container-custom">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4">
+          <h2 className="section-title">
             <span className="gradient-text">Education</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="section-subtitle">
             Building expertise at the intersection of engineering and management
           </p>
         </div>
         
         <div className="grid md:grid-cols-2 gap-8">
           {education.map((edu, index) => (
-            <Card key={index} className="p-8 card-gradient shadow-medium transition-smooth hover:shadow-strong">
+            <Card key={index} className="p-8 card-hover">
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
                   <div className="p-3 rounded-lg bg-primary/10">
                     <GraduationCap className="h-6 w-6 text-primary" />
                   </div>
                   <div className="flex-1 space-y-2">
-                    <div className="flex items-center gap-2 mb-2">
-                      <Badge 
-                        variant={edu.status === "In Progress" ? "default" : "secondary"}
-                        className="text-xs"
-                      >
-                        {edu.status}
-                      </Badge>
-                    </div>
+                    <Badge 
+                      variant={edu.status === "In Progress" ? "default" : "secondary"}
+                      className="text-xs mb-2"
+                    >
+                      {edu.status}
+                    </Badge>
                     <h3 className="text-lg font-semibold leading-tight">
                       {edu.institution}
                     </h3>
@@ -76,10 +74,10 @@ export const Education = () => {
                 
                 {edu.coursework.length > 0 && (
                   <div className="space-y-3">
-                    <h4 className="font-medium">Relevant Coursework:</h4>
-                    <div className="flex flex-wrap gap-2">
+                    <h4 className="font-medium text-sm">Relevant Coursework</h4>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                       {edu.coursework.map((course, idx) => (
-                        <Badge key={idx} variant="outline" className="text-xs">
+                        <Badge key={idx} variant="outline" className="text-xs justify-center py-1">
                           {course}
                         </Badge>
                       ))}

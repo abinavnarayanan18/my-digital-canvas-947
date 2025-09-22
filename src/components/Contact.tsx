@@ -31,20 +31,20 @@ const contactInfo = [
 
 export const Contact = () => {
   return (
-    <section id="contact" className="section-padding bg-background">
+    <section id="contact" className="section-padding">
       <div className="container-custom">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4">
+          <h2 className="section-title">
             Let's <span className="gradient-text">Connect</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="section-subtitle">
             Ready to discuss product management opportunities or collaborate on innovative projects
           </p>
         </div>
         
         <div className="max-w-4xl mx-auto">
           <div className="grid md:grid-cols-2 gap-8 mb-12">
-            <Card className="p-8 card-gradient shadow-medium">
+            <Card className="p-8 card-hover">
               <div className="space-y-6">
                 <h3 className="text-xl font-semibold mb-6">Get in Touch</h3>
                 {contactInfo.map((contact, index) => (
@@ -72,14 +72,14 @@ export const Contact = () => {
               </div>
             </Card>
             
-            <Card className="p-8 card-gradient shadow-medium">
+            <Card className="p-8 card-hover">
               <div className="space-y-6">
                 <h3 className="text-xl font-semibold mb-6">Quick Actions</h3>
                 
                 <div className="space-y-4">
                   <Button 
                     size="lg" 
-                    className="w-full justify-start gap-3 py-6 transition-spring hover:scale-105"
+                    className="w-full justify-start gap-3 py-6 transition-smooth hover:scale-105"
                     asChild
                   >
                     <a href="mailto:as1670@duke.edu">
@@ -91,7 +91,7 @@ export const Contact = () => {
                   <Button 
                     variant="outline" 
                     size="lg" 
-                    className="w-full justify-start gap-3 py-6 transition-spring hover:scale-105"
+                    className="w-full justify-start gap-3 py-6 transition-smooth hover:scale-105"
                     asChild
                   >
                     <a 
@@ -107,7 +107,7 @@ export const Contact = () => {
                   <Button 
                     variant="secondary" 
                     size="lg" 
-                    className="w-full justify-start gap-3 py-6 transition-spring hover:scale-105"
+                    className="w-full justify-start gap-3 py-6 transition-smooth hover:scale-105"
                   >
                     <Download className="h-5 w-5" />
                     Download Resume
@@ -118,7 +118,7 @@ export const Contact = () => {
           </div>
           
           <div className="text-center">
-            <Card className="p-8 card-gradient shadow-medium inline-block">
+            <Card className="p-8 card-hover inline-block">
               <div className="space-y-4">
                 <h3 className="text-lg font-semibold">Open to Opportunities</h3>
                 <p className="text-muted-foreground max-w-md">
@@ -127,7 +127,7 @@ export const Contact = () => {
                 </p>
                 <div className="flex flex-wrap justify-center gap-2 text-sm">
                   <span className="px-3 py-1 bg-primary/10 text-primary rounded-full">Product Management</span>
-                  <span className="px-3 py-1 bg-accent/10 text-accent rounded-full">Technical Product Management</span>
+                  <span className="px-3 py-1 bg-primary/10 text-primary rounded-full">Technical Product Management</span>
                   <span className="px-3 py-1 bg-primary/10 text-primary rounded-full">Strategy Consulting</span>
                 </div>
               </div>

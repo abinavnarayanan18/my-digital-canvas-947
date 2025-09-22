@@ -38,48 +38,52 @@ const experiences = [
 
 export const Experience = () => {
   return (
-    <section id="experience" className="section-padding hero-gradient">
+    <section id="experience" className="section-padding section-alt">
       <div className="container-custom">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4">
+          <h2 className="section-title">
             Work <span className="gradient-text">Experience</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Building bridges between technology and business outcomes
+          <p className="section-subtitle">
+            Building bridges between technology and business outcomes through hands-on leadership
           </p>
         </div>
         
         <div className="space-y-8">
           {experiences.map((exp, index) => (
-            <Card key={index} className="p-8 card-gradient shadow-medium transition-smooth hover:shadow-strong">
+            <Card key={index} className="p-8 card-hover">
               <div className="space-y-6">
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                  <div className="space-y-2">
+                <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+                  <div className="space-y-3">
                     <div className="flex items-center gap-3">
-                      <Building className="h-5 w-5 text-primary" />
-                      <h3 className="text-xl font-semibold">{exp.company}</h3>
-                      <Badge variant="secondary">{exp.type}</Badge>
+                      <div className="p-2 rounded-lg bg-primary/10">
+                        <Building className="h-5 w-5 text-primary" />
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-semibold">{exp.company}</h3>
+                        <h4 className="text-lg font-medium text-primary">{exp.role}</h4>
+                      </div>
                     </div>
-                    <h4 className="text-lg font-medium text-primary">{exp.role}</h4>
                   </div>
                   
-                  <div className="flex flex-col sm:flex-row gap-4 text-sm text-muted-foreground">
-                    <div className="flex items-center gap-2">
+                  <div className="flex flex-wrap gap-3">
+                    <Badge variant="secondary">{exp.type}</Badge>
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
                       <CalendarDays className="h-4 w-4" />
                       <span>{exp.duration}</span>
                     </div>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
                       <MapPin className="h-4 w-4" />
                       <span>{exp.location}</span>
                     </div>
                   </div>
                 </div>
                 
-                <div className="grid gap-3">
+                <div className="grid gap-4">
                   {exp.highlights.map((highlight, idx) => (
-                    <div key={idx} className="flex items-start gap-3">
+                    <div key={idx} className="flex items-start gap-3 p-3 rounded-lg bg-muted/30">
                       <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
-                      <p className="text-muted-foreground leading-relaxed">{highlight}</p>
+                      <p className="text-muted-foreground leading-relaxed text-sm">{highlight}</p>
                     </div>
                   ))}
                 </div>

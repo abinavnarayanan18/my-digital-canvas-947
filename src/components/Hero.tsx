@@ -1,52 +1,69 @@
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { ArrowRight, Download } from "lucide-react";
+
 export const Hero = () => {
   return (
-    <section className="flex flex-col items-center justify-center text-center py-20 px-6 bg-gradient-to-b from-gray-50 to-white">
-      <h1
-        className="text-4xl md:text-6xl font-extrabold tracking-tight text-gray-900 mb-4 transition-opacity duration-700 opacity-100"
-      >
-        Duke MEM ’27 | Aspiring Product Manager & Project Leader
-      </h1>
+    <section className="hero-gradient section-padding min-h-screen flex items-center">
+      <div className="container-custom">
+        <div className="max-w-4xl mx-auto text-center space-y-8">
+          <div className="space-y-4">
+            <Badge variant="secondary" className="mb-4">
+              Duke MEM '27 | Product Management Focus
+            </Badge>
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight">
+              <span className="block">Abinav</span>
+              <span className="gradient-text">Narayanan</span>
+            </h1>
+            <p className="text-xl sm:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              3x AWS Certified DevOps Engineer transitioning to Product Management. 
+              Bridging technical expertise with strategic business impact through data-driven innovation.
+            </p>
+          </div>
 
-      <p
-        className="text-lg md:text-xl text-gray-600 max-w-2xl mb-8 transition-opacity duration-700 delay-150 opacity-100"
-      >
-        3x AWS Certified | Driving Cloud Transformation & AI Innovation | Published Researcher passionate about bridging technology, strategy, and product impact.
-      </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Button size="lg" className="group" asChild>
+              <a
+                href="/resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Download className="mr-2 h-4 w-4" />
+                Download Resume
+              </a>
+            </Button>
+            
+            <Button size="lg" variant="outline" className="group" asChild>
+              <a
+                href="https://www.linkedin.com/in/abinavnarayanan"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Connect on LinkedIn
+                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </a>
+            </Button>
+          </div>
 
-      <div
-        className="flex flex-wrap gap-4 justify-center transition-opacity duration-700 delay-300 opacity-100"
-      >
-        <a
-          href="/resume.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bg-primary text-white rounded-2xl px-6 py-3 shadow-md hover:shadow-lg transition"
-        >
-          Download Resume
-        </a>
-
-        <a
-          href="https://www.linkedin.com/in/abinavnarayanan"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="border border-gray-300 rounded-2xl px-6 py-3 text-gray-700 hover:bg-gray-100 transition flex items-center"
-        >
-          Connect on LinkedIn
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="ml-2 h-4 w-4"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M9 5l7 7-7 7"
-            />
-          </svg>
-        </a>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 pt-8">
+            <div className="text-center">
+              <div className="text-3xl font-bold text-primary">3+</div>
+              <div className="text-sm text-muted-foreground">Years DevOps</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-primary">50+</div>
+              <div className="text-sm text-muted-foreground">Releases Managed</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-primary">3</div>
+              <div className="text-sm text-muted-foreground">AWS Certifications</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-primary">40%</div>
+              <div className="text-sm text-muted-foreground">Faster Delivery</div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

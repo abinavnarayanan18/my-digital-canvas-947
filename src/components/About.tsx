@@ -2,59 +2,74 @@ import { Card } from "@/components/ui/card";
 
 export const About = () => {
   return (
-    <section id="about" className="section-padding bg-background">
+    <section id="about" className="section-padding">
       <div className="container-custom">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4">
+          <h2 className="section-title">
             About <span className="gradient-text">Me</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Transforming technical expertise into strategic product leadership
+          <p className="section-subtitle">
+            Transforming technical expertise into strategic product leadership through continuous learning and innovation
           </p>
         </div>
         
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="space-y-6">
-            <h3 className="text-2xl font-semibold mb-4">My Journey</h3>
-            <p className="text-muted-foreground leading-relaxed">
-              Currently pursuing my Master of Engineering Management at Duke University, 
-              I bring 3+ years of hands-on experience as a Lead DevOps Engineer at Tata Consultancy Services, 
-              where I spearheaded cloud transformations and streamlined operations for major clients like Qantas Airlines.
-            </p>
-            <p className="text-muted-foreground leading-relaxed">
-              My unique blend of technical depth and emerging product management skills positions me 
-              to bridge the gap between engineering teams and business objectives, ensuring products 
-              are both technically sound and market-driven.
-            </p>
+        <div className="grid lg:grid-cols-3 gap-8 items-start">
+          <div className="lg:col-span-2 space-y-8">
+            <Card className="p-8 card-hover">
+              <h3 className="text-2xl font-semibold mb-6">Professional Journey</h3>
+              <div className="space-y-4">
+                <p className="text-muted-foreground leading-relaxed">
+                  Currently pursuing my <strong>Master of Engineering Management</strong> at Duke University, 
+                  I bring 3+ years of hands-on experience as a Lead DevOps Engineer at Tata Consultancy Services, 
+                  where I spearheaded cloud transformations and streamlined operations for major clients like Qantas Airlines.
+                </p>
+                <p className="text-muted-foreground leading-relaxed">
+                  My unique blend of technical depth and emerging product management skills positions me 
+                  to bridge the gap between engineering teams and business objectives, ensuring products 
+                  are both technically sound and market-driven.
+                </p>
+                <p className="text-muted-foreground leading-relaxed">
+                  Through my consulting work with EmeraldAI and involvement in Duke's vibrant ecosystem, 
+                  I'm developing expertise in product strategy, market analysis, and customer-centric thinking 
+                  while maintaining my technical foundation.
+                </p>
+              </div>
+            </Card>
           </div>
           
-          <Card className="p-8 card-gradient shadow-medium">
-            <div className="space-y-6">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-primary mb-2">3+</div>
-                <div className="text-sm text-muted-foreground">Years in DevOps Engineering</div>
-              </div>
-              
-              <div className="grid grid-cols-2 gap-6 text-center">
-                <div>
-                  <div className="text-2xl font-bold text-primary mb-1">50+</div>
-                  <div className="text-xs text-muted-foreground">Production Releases</div>
+          <div className="space-y-6">
+            <Card className="p-6 card-hover">
+              <h4 className="font-semibold mb-4 text-center">Key Achievements</h4>
+              <div className="space-y-4">
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-primary">50+</div>
+                  <div className="text-sm text-muted-foreground">Production Releases</div>
                 </div>
-                <div>
-                  <div className="text-2xl font-bold text-primary mb-1">40%</div>
-                  <div className="text-xs text-muted-foreground">Faster Delivery</div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-primary">40%</div>
+                  <div className="text-sm text-muted-foreground">Faster Delivery</div>
                 </div>
-                <div>
-                  <div className="text-2xl font-bold text-primary mb-1">25%</div>
-                  <div className="text-xs text-muted-foreground">Reduced Turnaround</div>
-                </div>
-                <div>
-                  <div className="text-2xl font-bold text-primary mb-1">Dec 2026</div>
-                  <div className="text-xs text-muted-foreground">Duke MEM Graduate</div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-primary">25%</div>
+                  <div className="text-sm text-muted-foreground">Reduced Turnaround</div>
                 </div>
               </div>
-            </div>
-          </Card>
+            </Card>
+
+            <Card className="p-6 card-hover">
+              <h4 className="font-semibold mb-4 text-center">Education Timeline</h4>
+              <div className="space-y-3">
+                <div className="text-center">
+                  <div className="font-semibold text-primary">Dec 2026</div>
+                  <div className="text-sm text-muted-foreground">Duke MEM Graduate</div>
+                </div>
+                <div className="text-center">
+                  <div className="font-semibold text-primary">2022</div>
+                  <div className="text-sm text-muted-foreground">B.Tech Graduate</div>
+                </div>
+              </div>
+            </Card>
+          </div>
         </div>
       </div>
     </section>

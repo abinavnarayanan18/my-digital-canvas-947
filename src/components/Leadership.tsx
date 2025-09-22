@@ -23,27 +23,27 @@ const leadership = [
 
 export const Leadership = () => {
   return (
-    <section id="leadership" className="section-padding hero-gradient">
+    <section id="leadership" className="section-padding">
       <div className="container-custom">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4">
+          <h2 className="section-title">
             Community <span className="gradient-text">Leadership</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Giving back through mentorship and community building
+          <p className="section-subtitle">
+            Giving back through mentorship and community building initiatives
           </p>
         </div>
         
         <div className="grid md:grid-cols-2 gap-8">
           {leadership.map((item, index) => (
-            <Card key={index} className="p-8 card-gradient shadow-medium transition-smooth hover:shadow-strong group">
+            <Card key={index} className="p-8 card-hover group">
               <div className="space-y-6">
-                <div className="flex items-start justify-between">
+                <div className="space-y-4">
                   <div className="flex items-start gap-4">
                     <div className="p-3 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-smooth">
                       <item.icon className="h-6 w-6 text-primary" />
                     </div>
-                    <div className="space-y-2">
+                    <div className="space-y-2 flex-1">
                       <Badge variant="secondary" className="text-xs">
                         {item.type}
                       </Badge>
@@ -61,13 +61,13 @@ export const Leadership = () => {
                 
                 <div className="space-y-3">
                   <div className="flex items-center gap-2">
-                    <Lightbulb className="h-4 w-4 text-accent" />
-                    <h4 className="font-medium">Key Contributions:</h4>
+                    <Lightbulb className="h-4 w-4 text-primary" />
+                    <h4 className="font-medium text-sm">Key Contributions</h4>
                   </div>
-                  <div className="grid gap-2">
+                  <div className="grid gap-3">
                     {item.impact.map((impact, idx) => (
-                      <div key={idx} className="flex items-center gap-3">
-                        <div className="w-1.5 h-1.5 rounded-full bg-accent" />
+                      <div key={idx} className="flex items-center gap-3 p-2 rounded bg-muted/50">
+                        <div className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
                         <span className="text-sm text-muted-foreground">{impact}</span>
                       </div>
                     ))}
@@ -79,9 +79,11 @@ export const Leadership = () => {
         </div>
         
         <div className="text-center mt-12">
-          <Card className="p-8 card-gradient shadow-medium inline-block">
+          <Card className="p-8 card-hover inline-block">
             <div className="flex items-center gap-4">
-              <Users className="h-8 w-8 text-primary" />
+              <div className="p-3 rounded-full bg-primary/10">
+                <Users className="h-6 w-6 text-primary" />
+              </div>
               <div className="text-left">
                 <h3 className="text-lg font-semibold mb-1">Always Open to Collaborate</h3>
                 <p className="text-sm text-muted-foreground">
