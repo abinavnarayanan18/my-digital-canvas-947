@@ -17,17 +17,21 @@ const experiences = [
   },
   {
     company: "Tata Consultancy Services (TCS)",
-    role: "Lead DevOps Engineer",
-    duration: "July 2022 – July 2025",
+    role: "DevOps Engineer",
+    duration: "July 2022 – Present",
     location: "Chennai, India",
     type: "Full-time",
     highlights: [
-      "Spearheaded large-scale cloud transformation program, accelerating delivery timelines by 40%",
-      "Led cross-functional teams to migrate legacy mainframe applications to AWS",
-      "Collaborated directly with Qantas Airlines' stakeholders to align technical deliverables",
-      "Developed automation tools that reduced turnaround times by 25%",
-      "Executed 50+ production releases in high-stakes, penalty-driven environments",
-      "Led a team of 3-4 engineers across multiple release cycles"
+      "Led a DevOps/Cloud Platform team providing infrastructure support for migrated applications in AWS",
+      "Migrated legacy mainframe applications from on-premises to AWS Cloud, overseeing code refactoring and infrastructure customization",
+      "Developed PowerShell scripts for automating administrative tasks on Windows servers",
+      "Implemented CI/CD pipelines with GitHub Actions, automating infrastructure provisioning using AWS CloudFormation",
+      "Configured monitoring systems using Splunk and Datadog for proactive issue resolution",
+      "Designed AWS Lambda functions for cost-effective solutions",
+      "Managed production releases as a Release Manager, collaborating with stakeholders",
+      "Conducted security assessments and ensured compliance across deployments",
+      "Developed C# code to enhance .NET applications integrated with on-premises systems",
+      "Worked on IBM MQ applications, handling message sending, receiving, and consumption"
     ]
   }
 ];
