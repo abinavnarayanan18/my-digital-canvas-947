@@ -1,66 +1,65 @@
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Download } from "lucide-react";
 
 export const Hero = () => {
   return (
-    <section className="hero-gradient section-padding min-h-screen flex items-center">
-      <div className="container-custom">
-        <div className="max-w-4xl mx-auto text-center space-y-8">
-          <div className="space-y-4">
-            <Badge variant="secondary" className="mb-4">
+    <section className="py-24 lg:py-32 bg-background">
+      <div className="max-w-4xl mx-auto px-6 lg:px-8">
+        <div className="text-center space-y-12">
+          <div className="space-y-8">
+            <div className="text-sm font-medium text-primary-light tracking-wide uppercase font-sans">
               Duke MEM '27 | Product Management Focus
-            </Badge>
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight">
-              <span className="block">Abinav</span>
-              <span className="gradient-text">Narayanan</span>
+            </div>
+            <h1 className="text-6xl sm:text-7xl lg:text-8xl font-serif text-primary leading-none">
+              Abinav
+              <br />
+              Narayanan
             </h1>
-            <p className="text-xl sm:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              3x AWS Certified DevOps Engineer transitioning to Product Management. 
-              Bridging technical expertise with strategic business impact through data-driven innovation.
-            </p>
+            <div className="max-w-2xl mx-auto">
+              <p className="text-xl sm:text-2xl font-sans text-primary-light leading-relaxed">
+                3x AWS Certified DevOps Engineer transitioning to Product Management. 
+                Bridging technical expertise with strategic business impact through data-driven innovation.
+              </p>
+            </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button size="lg" className="group" asChild>
-              <a
-                href="/resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Download className="mr-2 h-4 w-4" />
-                Download Resume
-              </a>
-            </Button>
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+            <a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-3 bg-primary text-white font-sans font-medium text-sm tracking-wide uppercase transition-colors hover:bg-accent inline-flex items-center gap-2"
+            >
+              <Download className="h-4 w-4" />
+              Download Resume
+            </a>
             
-            <Button size="lg" variant="outline" className="group" asChild>
-              <a
-                href="https://www.linkedin.com/in/abinavnarayanan"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Connect on LinkedIn
-                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </a>
-            </Button>
+            <a
+              href="https://www.linkedin.com/in/abinavnarayanan"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-3 border border-primary text-primary font-sans font-medium text-sm tracking-wide uppercase transition-colors hover:bg-primary hover:text-white inline-flex items-center gap-2 group"
+            >
+              Connect on LinkedIn
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </a>
           </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 pt-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 pt-16 border-t border-primary/10">
             <div className="text-center">
-              <div className="text-3xl font-bold text-primary">3+</div>
-              <div className="text-sm text-muted-foreground">Years DevOps</div>
+              <div className="text-3xl font-serif font-semibold text-primary">3+</div>
+              <div className="text-sm font-sans text-primary-light mt-2">Years DevOps</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-primary">50+</div>
-              <div className="text-sm text-muted-foreground">Releases Managed</div>
+              <div className="text-3xl font-serif font-semibold text-primary">50+</div>
+              <div className="text-sm font-sans text-primary-light mt-2">Releases Managed</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-primary">3</div>
-              <div className="text-sm text-muted-foreground">AWS Certifications</div>
+              <div className="text-3xl font-serif font-semibold text-primary">3</div>
+              <div className="text-sm font-sans text-primary-light mt-2">AWS Certifications</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-primary">40%</div>
-              <div className="text-sm text-muted-foreground">Faster Delivery</div>
+              <div className="text-3xl font-serif font-semibold text-primary">40%</div>
+              <div className="text-sm font-sans text-primary-light mt-2">Faster Delivery</div>
             </div>
           </div>
         </div>

@@ -1,5 +1,3 @@
-import { Card } from "@/components/ui/card";
-
 const projects = [
   {
     title: "Satellite Image Enhancement using Deep Reinforcement Learning",
@@ -25,29 +23,29 @@ const projects = [
 
 export const Projects = () => {
   return (
-    <section id="projects" className="section-padding">
-      <div className="container-custom">
-        <div className="text-center mb-16">
-          <h2 className="section-title">
-            Technical <span className="gradient-text">Projects</span>
+    <section id="projects" className="py-24 lg:py-32 bg-background-muted">
+      <div className="max-w-4xl mx-auto px-6 lg:px-8">
+        <div className="text-center mb-20">
+          <h2 className="text-4xl sm:text-5xl font-serif text-primary mb-6">
+            Technical Projects
           </h2>
-          <p className="section-subtitle">
+          <p className="text-lg font-sans text-primary-light max-w-2xl mx-auto leading-relaxed">
             Research and development initiatives showcasing AI, machine learning, and computer vision expertise
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="space-y-16">
           {projects.map((project, idx) => (
-            <Card key={idx} className="p-6 card-hover">
-              <div className="space-y-4">
-                <h3 className="text-lg font-semibold leading-tight">
+            <div key={idx} className="group">
+              <div className="pb-8 border-b border-primary/10">
+                <h3 className="text-2xl font-serif text-primary mb-4 hover:text-accent transition-colors cursor-pointer">
                   {project.title}
                 </h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">
+                <p className="text-lg font-sans text-primary-light leading-relaxed">
                   {project.description}
                 </p>
               </div>
-            </Card>
+            </div>
           ))}
         </div>
       </div>

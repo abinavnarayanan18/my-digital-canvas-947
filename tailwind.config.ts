@@ -13,14 +13,22 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        'serif': ['Playfair Display', 'serif'],
+        'sans': ['Inter', 'sans-serif'],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
+        background: {
+          DEFAULT: "#FFFFFF",
+          muted: "#F9F9F9",
+        },
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "hsl(var(--primary))",
+          DEFAULT: "#1C1C1C",
+          light: "#444444",
           foreground: "hsl(var(--primary-foreground))",
           variant: "hsl(var(--primary-variant))",
         },
@@ -37,7 +45,8 @@ export default {
           foreground: "hsl(var(--muted-foreground))",
         },
         accent: {
-          DEFAULT: "hsl(var(--accent))",
+          DEFAULT: "#2A5FFF",
+          muted: "#B3C7FF",
           foreground: "hsl(var(--accent-foreground))",
         },
         popover: {

@@ -1,6 +1,4 @@
-import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { CalendarDays, MapPin, Building } from "lucide-react";
+import { CalendarDays, MapPin } from "lucide-react";
 
 const experiences = [
   {
@@ -38,57 +36,52 @@ const experiences = [
 
 export const Experience = () => {
   return (
-    <section id="experience" className="section-padding section-alt">
-      <div className="container-custom">
-        <div className="text-center mb-16">
-          <h2 className="section-title">
-            Work <span className="gradient-text">Experience</span>
+    <section id="experience" className="py-24 lg:py-32 bg-background">
+      <div className="max-w-4xl mx-auto px-6 lg:px-8">
+        <div className="text-center mb-20">
+          <h2 className="text-4xl sm:text-5xl font-serif text-primary mb-6">
+            Work Experience
           </h2>
-          <p className="section-subtitle">
+          <p className="text-lg font-sans text-primary-light max-w-2xl mx-auto leading-relaxed">
             Building bridges between technology and business outcomes through hands-on leadership
           </p>
         </div>
         
-        <div className="space-y-8">
+        <div className="space-y-20">
           {experiences.map((exp, index) => (
-            <Card key={index} className="p-8 card-hover">
-              <div className="space-y-6">
-                <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-3">
-                      <div className="p-2 rounded-lg bg-primary/10">
-                        <Building className="h-5 w-5 text-primary" />
-                      </div>
-                      <div>
-                        <h3 className="text-xl font-semibold">{exp.company}</h3>
-                        <h4 className="text-lg font-medium text-primary">{exp.role}</h4>
-                      </div>
-                    </div>
-                  </div>
+            <div key={index} className="group">
+              <div className="pb-8 border-b border-primary/10">
+                <div className="mb-6">
+                  <h3 className="text-3xl font-serif text-primary mb-2 hover:text-accent transition-colors cursor-pointer">
+                    {exp.role}
+                  </h3>
+                  <h4 className="text-xl font-sans text-primary-light mb-4">{exp.company}</h4>
                   
-                  <div className="flex flex-wrap gap-3">
-                    <Badge variant="secondary">{exp.type}</Badge>
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <div className="flex flex-wrap gap-6 text-sm font-sans text-primary-light">
+                    <div className="flex items-center gap-2">
                       <CalendarDays className="h-4 w-4" />
                       <span>{exp.duration}</span>
                     </div>
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <div className="flex items-center gap-2">
                       <MapPin className="h-4 w-4" />
                       <span>{exp.location}</span>
                     </div>
+                    <span className="px-3 py-1 bg-primary/5 text-primary text-xs uppercase tracking-wide">
+                      {exp.type}
+                    </span>
                   </div>
                 </div>
                 
-                <div className="grid gap-4">
+                <div className="space-y-4">
                   {exp.highlights.map((highlight, idx) => (
-                    <div key={idx} className="flex items-start gap-3 p-3 rounded-lg bg-muted/30">
-                      <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
-                      <p className="text-muted-foreground leading-relaxed text-sm">{highlight}</p>
+                    <div key={idx} className="flex items-start gap-4">
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary mt-3 flex-shrink-0" />
+                      <p className="text-lg font-sans text-primary-light leading-relaxed">{highlight}</p>
                     </div>
                   ))}
                 </div>
               </div>
-            </Card>
+            </div>
           ))}
         </div>
       </div>
