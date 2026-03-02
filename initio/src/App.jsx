@@ -31,20 +31,27 @@ function Loader() {
 }
 
 function Auth() {
+  const [mode, setMode] = useState("login");
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [status, setStatus] = useState("idle");
   const [msg, setMsg] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!email) return;
+    if (!email || !password) return;
     setStatus("loading");
-    const { error } = await supabase.auth.signInWithOtp({
-      email,
-      options: { emailRedirectTo: `${window.location.origin}/initio` }
-    });
-    if (error) { setMsg(error.message); setStatus("error"); }
-    else setStatus("sent");
+    setMsg("");
+
+    if (mode === "signup") {
+      const { error } = await supabase.auth.signUp({ email, password });
+      if (error) { setMsg(error.message); setStatus("error"); }
+      else { setMsg("Account created! You can now sign in."); setStatus("success"); setMode("login"); }
+    } else {
+      const { error } = await supabase.auth.signInWithPassword({ email, password });
+      if (error) { setMsg(error.message); setStatus("error"); }
+      else setStatus("idle");
+    }
   };
 
   return (
@@ -53,6 +60,7 @@ function Auth() {
         <div className="auth-grid" />
         <div className="auth-glow" />
       </div>
+
       <div className="auth-card">
         <div className="auth-header">
           <div className="auth-logo">
@@ -64,29 +72,41 @@ function Auth() {
           <h1 className="auth-title">Initio</h1>
           <p className="auth-subtitle">Focus. One task at a time.</p>
         </div>
-        {status === "sent" ? (
-          <div className="auth-sent">
-            <div className="sent-icon">✦</div>
-            <p className="sent-title">Check your inbox</p>
-            <p className="sent-sub">We sent a magic link to <strong>{email}</strong></p>
-            <button className="btn-ghost" onClick={() => setStatus("idle")}>Try a different email</button>
+
+        <div className="auth-tabs">
+          <button className={`auth-tab ${mode === "login" ? "active" : ""}`}
+            onClick={() => { setMode("login"); setMsg(""); setStatus("idle"); }}>
+            Sign in
+          </button>
+          <button className={`auth-tab ${mode === "signup" ? "active" : ""}`}
+            onClick={() => { setMode("signup"); setMsg(""); setStatus("idle"); }}>
+            Create account
+          </button>
+        </div>
+
+        <form className="auth-form" onSubmit={handleSubmit}>
+          <div className="field">
+            <label className="field-label">Email address</label>
+            <input className="field-input" type="email" placeholder="you@example.com"
+              value={email} onChange={e => setEmail(e.target.value)} autoFocus />
           </div>
-        ) : (
-          <form className="auth-form" onSubmit={handleSubmit}>
-            <div className="field">
-              <label className="field-label">Email address</label>
-              <input className="field-input" type="email" placeholder="you@example.com"
-                value={email} onChange={e => setEmail(e.target.value)} autoFocus />
-            </div>
-            {status === "error" && <p className="auth-error">{msg}</p>}
-            <button className={`btn-primary ${status === "loading" ? "btn-loading" : ""}`}
-              type="submit" disabled={status === "loading"}>
-              {status === "loading" ? <span className="btn-spinner" /> : "Continue with email →"}
-            </button>
-            <p className="auth-note">No password needed. We'll send you a sign-in link.</p>
-          </form>
-        )}
+          <div className="field">
+            <label className="field-label">Password</label>
+            <input className="field-input" type="password"
+              placeholder={mode === "signup" ? "Min. 6 characters" : "Your password"}
+              value={password} onChange={e => setPassword(e.target.value)} />
+          </div>
+
+          {status === "error" && <p className="auth-error">{msg}</p>}
+          {status === "success" && <p className="auth-success">{msg}</p>}
+
+          <button className={`btn-primary ${status === "loading" ? "btn-loading" : ""}`}
+            type="submit" disabled={status === "loading"}>
+            {status === "loading" ? <span className="btn-spinner" /> : mode === "login" ? "Sign in →" : "Create account →"}
+          </button>
+        </form>
       </div>
+
       <p className="auth-footer">© {new Date().getFullYear()} Initio</p>
     </div>
   );
