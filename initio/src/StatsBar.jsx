@@ -4,7 +4,7 @@ export default function StatsBar({ todaySeconds, completedToday, sessions }) {
   const totalMins = Math.floor((todaySeconds % 3600) / 60);
 
   const timeStr = todaySeconds === 0
-    ? "0 min"
+    ? "0"
     : totalHours > 0
       ? `${totalHours}h ${totalMins}m`
       : `${totalMins}m`;
@@ -13,17 +13,15 @@ export default function StatsBar({ todaySeconds, completedToday, sessions }) {
     <div className="stats-bar">
       <div className="stat-item">
         <span className="stat-value">{timeStr}</span>
-        <span className="stat-label">focused today</span>
+        <span className="stat-label">Focused</span>
       </div>
-      <div className="stat-divider" />
       <div className="stat-item">
         <span className="stat-value">{todaySessions}</span>
-        <span className="stat-label">sessions</span>
+        <span className="stat-label">Sessions</span>
       </div>
-      <div className="stat-divider" />
       <div className="stat-item">
         <span className="stat-value">{completedToday}</span>
-        <span className="stat-label">completed</span>
+        <span className="stat-label">Done</span>
       </div>
     </div>
   );
