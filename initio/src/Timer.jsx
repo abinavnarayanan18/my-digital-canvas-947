@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { supabase } from "./supabase";
 
 const PRESETS = [
+  { label: "2 min", seconds: 120, quick: true },
   { label: "5 min", seconds: 300 },
   { label: "15 min", seconds: 900 },
   { label: "25 min", seconds: 1500 },
@@ -9,48 +10,61 @@ const PRESETS = [
 ];
 
 export default function Timer({ task, sessionUser, close }) {
-  const [seconds, setSeconds] = useState(1500);
+  const [seconds, setSeconds] = useState(task.estimated_minutes ? task.estimated_minutes * 60 : 1500);
   const [running, setRunning] = useState(false);
-  const [phase, setPhase] = useState("idle"); // idle | running | paused | done
+  const [phase, setPhase] = useState("idle");
+  const [elapsed, setElapsed] = useState(0);
+  const [overrun, setOverrun] = useState(false);
+  const [sessionId, setSessionId] = useState(null);
+  const [completionAnim, setCompletionAnim] = useState(false);
   const interval = useRef(null);
-  const startedAt = useRef(null);
-
-  const total = useRef(seconds);
+  const elapsedInterval = useRef(null);
+  const totalRef = useRef(seconds);
 
   const pad = (n) => String(n).padStart(2, "0");
-  const mins = Math.floor(seconds / 60);
-  const secs = seconds % 60;
-  const progress = 1 - seconds / total.current;
+  const mins = Math.floor(Math.abs(seconds) / 60);
+  const secs = Math.abs(seconds) % 60;
+  const progress = Math.min(elapsed / totalRef.current, 1);
+  const circumference = 2 * Math.PI * 54;
+  const isQuick = totalRef.current === 120;
 
   const startSession = async (planned) => {
-    await supabase.from("sessions").insert([{
+    const { data } = await supabase.from("sessions").insert([{
       user_id: sessionUser.user.id,
       task_id: task.id,
       planned_seconds: planned
-    }]);
+    }]).select();
+    if (data?.[0]) setSessionId(data[0].id);
   };
 
-  const start = async () => {
-    total.current = seconds;
-    startedAt.current = Date.now();
+  const endSession = async (actualSeconds) => {
+    if (sessionId) {
+      await supabase.from("sessions").update({ actual_seconds: actualSeconds }).eq("id", sessionId);
+    }
+  };
+
+  const start = async (overrideSeconds) => {
+    const s = overrideSeconds || seconds;
+    totalRef.current = s;
+    setSeconds(s);
+    setElapsed(0);
     setPhase("running");
     setRunning(true);
-    await startSession(seconds);
+    setOverrun(false);
+    await startSession(s);
+
     interval.current = setInterval(() => {
-      setSeconds(prev => {
-        if (prev <= 1) {
-          clearInterval(interval.current);
-          setPhase("done");
-          setRunning(false);
-          return 0;
-        }
-        return prev - 1;
-      });
+      setSeconds(prev => prev - 1);
+    }, 1000);
+
+    elapsedInterval.current = setInterval(() => {
+      setElapsed(prev => prev + 1);
     }, 1000);
   };
 
   const pause = () => {
     clearInterval(interval.current);
+    clearInterval(elapsedInterval.current);
     setPhase("paused");
     setRunning(false);
   };
@@ -59,86 +73,133 @@ export default function Timer({ task, sessionUser, close }) {
     setPhase("running");
     setRunning(true);
     interval.current = setInterval(() => {
-      setSeconds(prev => {
-        if (prev <= 1) {
-          clearInterval(interval.current);
-          setPhase("done");
-          setRunning(false);
-          return 0;
-        }
-        return prev - 1;
-      });
+      setSeconds(prev => prev - 1);
     }, 1000);
+    elapsedInterval.current = setInterval(() => {
+      setElapsed(prev => prev + 1);
+    }, 1000);
+  };
+
+  const stop = async () => {
+    clearInterval(interval.current);
+    clearInterval(elapsedInterval.current);
+    await endSession(elapsed);
+    close();
   };
 
   const reset = (s) => {
     clearInterval(interval.current);
+    clearInterval(elapsedInterval.current);
     setSeconds(s);
-    total.current = s;
+    totalRef.current = s;
     setPhase("idle");
     setRunning(false);
+    setElapsed(0);
+    setOverrun(false);
   };
 
   useEffect(() => {
-    return () => clearInterval(interval.current);
+    if (seconds === 0 && phase === "running") {
+      setOverrun(true);
+    }
+    if (seconds <= 0 && phase === "running") {
+      // keep going into overrun — don't stop
+    }
+  }, [seconds, phase]);
+
+  useEffect(() => {
+    if (phase === "running" && elapsed === totalRef.current) {
+      setCompletionAnim(true);
+      setTimeout(() => setCompletionAnim(false), 2000);
+    }
+  }, [elapsed]);
+
+  useEffect(() => {
+    return () => {
+      clearInterval(interval.current);
+      clearInterval(elapsedInterval.current);
+    };
   }, []);
 
-  const circumference = 2 * Math.PI * 54;
+  const elapsedMins = Math.floor(elapsed / 60);
+  const elapsedSecs = elapsed % 60;
 
   return (
-    <div className="timer-overlay" onClick={(e) => e.target === e.currentTarget && close()}>
-      <div className="timer-modal">
-        <button className="timer-close" onClick={close}>×</button>
+    <div className="timer-overlay" onClick={(e) => e.target === e.currentTarget && stop()}>
+      <div className={`timer-modal ${completionAnim ? "completion-flash" : ""}`}>
+        <button className="timer-close" onClick={stop}>×</button>
+
+        {isQuick && phase !== "idle" && (
+          <div className="quick-start-badge">⚡ Just 2 minutes</div>
+        )}
 
         <p className="timer-task-name">{task.title}</p>
+        {task.estimated_minutes && phase !== "idle" && (
+          <p className="timer-estimate-label">
+            Estimated: {task.estimated_minutes}m
+            {overrun && <span className="overrun-tag"> · over by {Math.abs(Math.floor(seconds / 60))}m</span>}
+          </p>
+        )}
 
         <div className="timer-ring-wrap">
           <svg className="timer-ring" viewBox="0 0 120 120">
             <circle cx="60" cy="60" r="54" className="ring-bg" />
-            <circle
-              cx="60" cy="60" r="54"
-              className="ring-progress"
+            <circle cx="60" cy="60" r="54"
+              className={`ring-progress ${overrun ? "ring-overrun" : ""}`}
               strokeDasharray={circumference}
               strokeDashoffset={circumference * (1 - progress)}
             />
           </svg>
           <div className="timer-display">
-            <span className="timer-time">{pad(mins)}:{pad(secs)}</span>
-            {phase === "done" && <span className="timer-done-label">Complete</span>}
+            {overrun ? (
+              <>
+                <span className="timer-overrun-label">+{pad(Math.floor(Math.abs(seconds) / 60))}:{pad(Math.abs(seconds) % 60)}</span>
+                <span className="timer-overrun-sub">over time</span>
+              </>
+            ) : (
+              <span className="timer-time">{pad(mins)}:{pad(secs)}</span>
+            )}
+            {phase !== "idle" && (
+              <span className="timer-elapsed">{pad(elapsedMins)}:{pad(elapsedSecs)} elapsed</span>
+            )}
           </div>
         </div>
 
         {phase === "idle" && (
-          <div className="timer-presets">
-            {PRESETS.map(p => (
-              <button
-                key={p.seconds}
-                className={`preset-btn ${seconds === p.seconds ? "active" : ""}`}
-                onClick={() => reset(p.seconds)}
-              >
-                {p.label}
+          <>
+            <div className="timer-quick-start">
+              <button className="quick-btn" onClick={() => start(120)}>
+                <span className="quick-icon">⚡</span>
+                <span>Just 2 min</span>
               </button>
-            ))}
-          </div>
+            </div>
+            <div className="timer-presets">
+              {PRESETS.filter(p => !p.quick).map(p => (
+                <button key={p.seconds}
+                  className={`preset-btn ${seconds === p.seconds ? "active" : ""}`}
+                  onClick={() => reset(p.seconds)}>
+                  {p.label}
+                </button>
+              ))}
+            </div>
+          </>
         )}
 
         <div className="timer-controls">
           {phase === "idle" && (
-            <button className="timer-btn primary" onClick={start}>Start session</button>
+            <button className="timer-btn primary" onClick={() => start()}>Start session</button>
           )}
           {phase === "running" && (
-            <button className="timer-btn" onClick={pause}>Pause</button>
+            <>
+              <button className="timer-btn" onClick={pause}>Pause</button>
+              <button className="timer-btn danger" onClick={stop}>End</button>
+            </>
           )}
           {phase === "paused" && (
             <>
               <button className="timer-btn primary" onClick={resume}>Resume</button>
-              <button className="timer-btn" onClick={() => reset(total.current)}>Reset</button>
-            </>
-          )}
-          {phase === "done" && (
-            <>
-              <button className="timer-btn primary" onClick={close}>Done ✓</button>
-              <button className="timer-btn" onClick={() => reset(total.current)}>Again</button>
+              <button className="timer-btn" onClick={() => reset(totalRef.current)}>Reset</button>
+              <button className="timer-btn danger" onClick={stop}>End</button>
             </>
           )}
         </div>

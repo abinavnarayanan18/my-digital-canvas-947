@@ -11,11 +11,9 @@ export default function App() {
       setSession(session);
       setLoading(false);
     });
-
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
     });
-
     return () => subscription.unsubscribe();
   }, []);
 
@@ -34,27 +32,19 @@ function Loader() {
 
 function Auth() {
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState("idle"); // idle | loading | sent | error
+  const [status, setStatus] = useState("idle");
   const [msg, setMsg] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!email) return;
     setStatus("loading");
-
     const { error } = await supabase.auth.signInWithOtp({
       email,
-      options: {
-        emailRedirectTo: `${window.location.origin}/initio`
-      }
+      options: { emailRedirectTo: `${window.location.origin}/initio` }
     });
-
-    if (error) {
-      setMsg(error.message);
-      setStatus("error");
-    } else {
-      setStatus("sent");
-    }
+    if (error) { setMsg(error.message); setStatus("error"); }
+    else setStatus("sent");
   };
 
   return (
@@ -63,7 +53,6 @@ function Auth() {
         <div className="auth-grid" />
         <div className="auth-glow" />
       </div>
-
       <div className="auth-card">
         <div className="auth-header">
           <div className="auth-logo">
@@ -75,53 +64,29 @@ function Auth() {
           <h1 className="auth-title">Initio</h1>
           <p className="auth-subtitle">Focus. One task at a time.</p>
         </div>
-
         {status === "sent" ? (
           <div className="auth-sent">
             <div className="sent-icon">✦</div>
             <p className="sent-title">Check your inbox</p>
             <p className="sent-sub">We sent a magic link to <strong>{email}</strong></p>
-            <button className="btn-ghost" onClick={() => setStatus("idle")}>
-              Try a different email
-            </button>
+            <button className="btn-ghost" onClick={() => setStatus("idle")}>Try a different email</button>
           </div>
         ) : (
           <form className="auth-form" onSubmit={handleSubmit}>
             <div className="field">
               <label className="field-label">Email address</label>
-              <input
-                className="field-input"
-                type="email"
-                placeholder="you@example.com"
-                value={email}
-                onChange={e => setEmail(e.target.value)}
-                autoFocus
-              />
+              <input className="field-input" type="email" placeholder="you@example.com"
+                value={email} onChange={e => setEmail(e.target.value)} autoFocus />
             </div>
-
-            {status === "error" && (
-              <p className="auth-error">{msg}</p>
-            )}
-
-            <button
-              className={`btn-primary ${status === "loading" ? "btn-loading" : ""}`}
-              type="submit"
-              disabled={status === "loading"}
-            >
-              {status === "loading" ? (
-                <span className="btn-spinner" />
-              ) : (
-                "Continue with email →"
-              )}
+            {status === "error" && <p className="auth-error">{msg}</p>}
+            <button className={`btn-primary ${status === "loading" ? "btn-loading" : ""}`}
+              type="submit" disabled={status === "loading"}>
+              {status === "loading" ? <span className="btn-spinner" /> : "Continue with email →"}
             </button>
-
-            <p className="auth-note">
-              No password needed. We'll send you a sign-in link.
-            </p>
+            <p className="auth-note">No password needed. We'll send you a sign-in link.</p>
           </form>
         )}
       </div>
-
       <p className="auth-footer">© {new Date().getFullYear()} Initio</p>
     </div>
   );
